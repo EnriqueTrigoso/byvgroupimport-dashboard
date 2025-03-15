@@ -52,6 +52,7 @@
     "zoom-vanilla.js": "2.0.6"
   },
   "devDependencies": {
+    "@originjs/vite-plugin-federation": "^1.4.0",
     "@tailwindcss/forms": "0.5.7",
     "@types/dropzone": "5.7.8",
     "@types/flat": "5.0.5",
