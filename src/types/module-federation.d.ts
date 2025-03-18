@@ -1,4 +1,12 @@
-declare module "dashboard/Header";
-declare module "dashboard/Sidebar";
-declare module "dashboard/DashboardLayout";
-declare module "dashboard/DashboardPage";
+declare module "dashboard/PieChart" {
+    import { ComponentType } from "react";
+    const Header: ComponentType<any>;
+    export default Header;
+  }
+  
+  declare module "dashboard/*" {
+    import { ComponentType } from "react";
+    const Component: ComponentType<any>;
+    export default Component;
+  }
+  
