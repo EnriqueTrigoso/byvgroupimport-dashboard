@@ -5,18 +5,12 @@ import federation from "@originjs/vite-plugin-federation";
 
 export default defineConfig({
   build: {
-    // target: "esnext",
-    target: "es2020",
+    target: "esnext",
     commonjsOptions: {
       include: ["tailwind.config.js", "node_modules/**"],
     },
-    minify: false,
-    cssCodeSplit: false,
-    rollupOptions: {
-      output: {
-        format: "system",
-      },
-    },
+    minify: true,
+    cssCodeSplit: true,
   },
   optimizeDeps: {
     include: ["tailwind-config"],
