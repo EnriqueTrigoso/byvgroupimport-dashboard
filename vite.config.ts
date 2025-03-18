@@ -5,18 +5,29 @@ import federation from "@originjs/vite-plugin-federation";
 
 export default defineConfig({
   build: {
-    modulePreload: false,
-    target: "esnext",
     commonjsOptions: {
       include: ["tailwind.config.js", "node_modules/**"],
     },
+    target: 'esnext',
     minify: false,
     cssCodeSplit: false,
+    modulePreload: false,
     rollupOptions: {
       output: {
-        minifyInternalExports: false,
-      },
-    },
+        format: 'esm',
+        entryFileNames: '[name].js',
+        chunkFileNames: '[name].[hash].js',
+        minifyInternalExports: false
+      }
+    }
+  },
+  server: {
+    cors: true, // Habilita CORS para desarrollo
+    port: 5173, // Puerto estándar de Vite
+    strictPort: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*" // Importante para Module Federation
+    }
   },
   optimizeDeps: {
     include: ["tailwind-config"],
