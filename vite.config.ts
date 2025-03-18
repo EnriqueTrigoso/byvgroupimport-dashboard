@@ -5,12 +5,18 @@ import federation from "@originjs/vite-plugin-federation";
 
 export default defineConfig({
   build: {
+    modulePreload: false,
     target: "esnext",
     commonjsOptions: {
       include: ["tailwind.config.js", "node_modules/**"],
     },
-    minify: true,
-    cssCodeSplit: true,
+    minify: false,
+    cssCodeSplit: false,
+    rollupOptions: {
+      output: {
+        minifyInternalExports: false,
+      },
+    },
   },
   optimizeDeps: {
     include: ["tailwind-config"],
@@ -23,7 +29,17 @@ export default defineConfig({
       exposes: {
         "./PieChart": "./src/components/PieChart/index.tsx",
       },
-      shared: ["react", "react-dom"],
+      // shared: ["react", "react-dom"],
+      shared: {
+        react: {
+          requiredVersion: "^18.0.0",
+          shareScope: "default",
+        },
+        "react-dom": {
+          requiredVersion: "^18.0.0",
+          shareScope: "default",
+        },
+      },
     }),
   ],
   resolve: {
